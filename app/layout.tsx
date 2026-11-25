@@ -1,30 +1,33 @@
-import { Geist, Geist_Mono } from "next/font/google"
+import type { Metadata } from "next";
+import { Manrope } from "next/font/google";
+import "./globals.css";
+import { Footer } from "@/components/layout/footer";
+import { Navbar } from "@/components/layout/navbar";
+import { ThemeProvider } from "@/components/layout/theme-provider";
+import { Toaster } from "@/components/ui/sonner";
 
-import "./globals.css"
-import { ThemeProvider } from "@/components/theme-provider"
-import { cn } from "@/lib/utils";
+const manrope = Manrope({ subsets: ["latin"] });
 
-const geist = Geist({subsets:['latin'],variable:'--font-sans'})
+export const metadata: Metadata = {
+  title: {
+    default: "StudioSpace | Book Creative Studios",
+    template: "%s | StudioSpace",
+  },
+  description:
+    "Discover and book photography studios, film stages, podcast lounges, music suites and art workshops from verified hosts.",
+};
 
-const fontMono = Geist_Mono({
-  subsets: ["latin"],
-  variable: "--font-mono",
-})
-
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode
-}>) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html
-      lang="en"
-      suppressHydrationWarning
-      className={cn("antialiased", fontMono.variable, "font-sans", geist.variable)}
-    >
-      <body>
-        <ThemeProvider>{children}</ThemeProvider>
+    <html lang="en" suppressHydrationWarning>
+      <body className={`${manrope.className} flex min-h-screen flex-col antialiased`}>
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+          <Navbar />
+          <main className="flex-1">{children}</main>
+          <Footer />
+          <Toaster richColors position="top-right" />
+        </ThemeProvider>
       </body>
     </html>
-  )
+  );
 }
