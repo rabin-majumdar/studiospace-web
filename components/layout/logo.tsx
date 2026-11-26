@@ -1,17 +1,31 @@
+import Image from "next/image";
 import Link from "next/link";
-import { Aperture } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { Outfit } from "next/font/google";
+
+const logoFont = Outfit({ subsets: ["latin"], weight: ["800"] });
 
 export function Logo({ className }: { className?: string }) {
     return (
         <Link
             href="/"
-            className={cn("flex items-center gap-2 text-xl font-bold tracking-tight", className)}
+            aria-label="StudioSpace home"
+            className={cn(
+                "flex items-center gap-2.5",
+                className
+            )}
         >
-            <span className="flex size-9 items-center justify-center rounded-lg bg-primary text-primary-foreground">
-                <Aperture className="size-5" />
+            <Image
+                src="/brand/logo-mark.png"
+                alt=""
+                width={380}
+                height={483}
+                priority
+                className="h-10 w-auto"
+            />
+            <span className={cn(logoFont.className, "text-2xl leading-none tracking-[-0.02em] sm:text-[1.7rem]")}>
+                StudioSpace
             </span>
-            StudioSpace
         </Link>
     );
 }

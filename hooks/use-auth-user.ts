@@ -7,9 +7,5 @@ interface AuthState {
 }
 
 export function useAuthUser(): AuthState {
-    return {
-        user: { name: "Rafi Ahmed", email: "rafi@example.com", image: null },
-        isPending: false,
-        logout: async () => { },
-    };
+    return { user: null, isPending: false, logout: async () => { } };
 }
