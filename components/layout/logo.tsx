@@ -3,7 +3,7 @@ import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { Outfit } from "next/font/google";
 
-const logoFont = Outfit({ subsets: ["latin"], weight: ["800"] });
+const logoFont = Outfit({ subsets: ["latin"], weight: ["600", "700"] });
 
 export function Logo({ className }: { className?: string }) {
     return (
@@ -23,8 +23,11 @@ export function Logo({ className }: { className?: string }) {
                 priority
                 className="h-10 w-auto"
             />
-            <span className={cn(logoFont.className, "text-2xl leading-none tracking-[-0.02em] sm:text-[1.7rem]")}>
-                StudioSpace
+            <span className={cn(logoFont.className, "text-xl font-bold tracking-tight sm:text-2xl")}>
+                Studio
+                <span className="bg-linear-to-r from-[#C4620A] to-[#E68D00] bg-clip-text text-transparent dark:from-[#E68D00] dark:to-[#F2A618]">
+                    Space
+                </span>
             </span>
         </Link>
     );
